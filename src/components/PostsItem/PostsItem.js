@@ -1,37 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './PostsItem.css';
 
 
-function PostsItem({id}) {
-
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
-
-
-    useEffect(() => {
-        fetch(`https://tv8.md/wp-json/wp/v2/posts/${id}`)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setIsLoaded(true);
-                    setItems(result);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            );
-    }, [id]);
-
-    console.log(items);
+const PostsItem =({post, image}) => {
+    const {title : {rendered: title}} = post;
 
     return (
-
-        <div>
-
+        <div className="post-list" >
+            <article>
+                <header>
+                    <div className='image-holder'>
+                        <img src='' alt="" />
+                    </div>
+                </header>
+                <section>
+                    <h3>{title}</h3>
+                </section>
+            </article>
         </div>
     );
-}
+};
 
 export default PostsItem;
+//item.media_details.sizes.medium.source_url

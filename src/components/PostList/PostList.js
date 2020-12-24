@@ -1,7 +1,24 @@
 import React, {useEffect, useState} from 'react';
+import PostsItem from '../PostsItem/PostsItem';
 import './PostList.css';
 
-function PostList() {
+const PostList = ({posts}) => {
+    
+    return (
+        <div className='wrapper'>
+            {
+                posts.map((post) => {
+                    return (
+                        <PostsItem post={post} key={post.id} />
+                    );
+                })
+            }
+        </div>
+    );
+};
+
+
+function PostListContainer() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
@@ -49,29 +66,32 @@ function PostList() {
         return <div>Loading...</div>;
     } else {
         return (
-            <>
-                {items.map((item) => {
-                    return (
-                        <div className="post-list" key={item.id}>
-                            <article>
-                                <header>
-                                    <div className='image-holder'>
-                                        <img src="https://tv8.md/wp-content/uploads/2020/12/Снимокfgfgfgfgfgf-300x157.jpg" alt={item.slug} />
-                                    </div>
-
-                                </header>
-                                <section>
-                                    <h3>{item.title.rendered}</h3>
-                                </section>
-                            </article>
-                        </div>
-                    );
-                })}
-            </>
+                <PostList posts={items} />
+            
         );
     }
-
-   
 }
 
-export default PostList;
+export default PostListContainer;
+
+
+
+{/* <>
+{items.map((item) => {
+    return (
+        <div className="post-list" key={item.id}>
+            <article>
+                <header>
+                    <div className='image-holder'>
+                        <img src="https://tv8.md/wp-content/uploads/2020/12/Снимокfgfgfgfgfgf-300x157.jpg" alt={item.slug} />
+                    </div>
+
+                </header>
+                <section>
+                    <h3>{item.title.rendered}</h3>
+                </section>
+            </article>
+        </div>
+    );
+})}
+</> */}
