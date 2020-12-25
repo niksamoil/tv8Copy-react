@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link, useParams  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './PostPage.css';
 
 function PostPage(props) {
@@ -14,7 +14,6 @@ function PostPage(props) {
         const getPostInfo = fetch(`https://tv8.md/wp-json/wp/v2/posts/${id}`)
         .then(res => res.json())
         .then((result) => result);
-        console.log(getPostInfo);
 
         const getMediaInfo = fetch(`https://tv8.md/wp-json/wp/v2/media/${mediaId}`)
         .then(res => res.json())
@@ -36,8 +35,6 @@ function PostPage(props) {
             console.log('clear');
         };
     }, [id, mediaId]);
-
-    console.log(data);
  
     if(isLoaded) {
         return (
