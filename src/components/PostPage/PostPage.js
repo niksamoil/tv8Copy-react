@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams  } from 'react-router-dom';
 import './PostPage.css';
 
 function PostPage(props) {
     const [page, setPage] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const { match: {params : {id}}} = props;
-    console.log(page);
+    // const { match: {params : {id}}} = props;
+    let {id} = useParams();
 
     useEffect(() => {
-        
+
         fetch(`https://tv8.md/wp-json/wp/v2/posts/${id}`)
         .then(res => res.json())
         .then(
@@ -25,11 +25,15 @@ function PostPage(props) {
                 console.log(error);
             }
         );
+
+        return () => {
+            console.log('clear');
+        };
     }, [id]);
 
 
     console.log(page);
-
+ 
     if(isLoaded) {
         return (
             <>
@@ -37,7 +41,7 @@ function PostPage(props) {
                     Go back
                 </Link>
                 <h1>
-                    {/* {page.title.rendered} */}
+                    {page.title.rendered}
                 </h1>
                 <div></div>
             </>

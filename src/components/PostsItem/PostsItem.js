@@ -22,11 +22,11 @@ const PostsItem =({post}) => {
     }, [post]);
 
     const {title : {rendered: title}, id} = post;
-
+    
     if(isLoaded) {
         return (
             <>
-                <Link to={`/post/${id}`}>
+                <Link to={`/post/${id}`} >
                     <div className="post-list" >
                         <article>
                             <header>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PostListContainer from '../PostList';
-import PostPage from '../PostPage/PostPage';
+import PostPage from '../PostPage';
 import './App.css';
 
 const App = () => {
